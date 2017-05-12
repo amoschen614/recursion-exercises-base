@@ -11,10 +11,25 @@ const stringify = function(obj) {
     return 'null';
   }
   switch (typeof obj) {
-    case ('string'):
-      return '\"' + obj + '\"';
-    default:
-      return String(obj);
+    case ('object'): 
+      if (Array.isArray(obj)) {
+        let result = '['
+        for (let i = 0; i < obj.length; i++) {
+          if (i > 0) {
+            result += ',';
+          }
+          result += stringify(obj[i]);
+        }
+        return result + ']';
+      } else {
+        let result = '{';
+        for (let key in obj) {
+          result += stringify(key) + ':' + stringify(obj[key]);
+        }
+        return result + '}';
+      }
+    case ('string'): return '\"' + obj + '\"';
+    default: return String(obj);
   }
 };
 
