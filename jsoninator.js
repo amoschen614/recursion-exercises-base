@@ -7,7 +7,15 @@ const _ = require('underscore'); // the real one! :)
 
 
 const stringify = function(obj) {
-  // your code goes here
+  if (obj === null) {
+    return 'null';
+  }
+  switch (typeof obj) {
+    case ('string'):
+      return '\"' + obj + '\"';
+    default:
+      return String(obj);
+  }
 };
 
 module.exports = {
