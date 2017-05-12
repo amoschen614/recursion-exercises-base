@@ -10,7 +10,7 @@ const getElementsByClassName = function(root, className) {
 };
 
 const getElementsByTagName = function(root, tagName) {
-  // Your code here
+  return _.filter(flattenTreeToArray(root), el => el.tagName === tagName);
 };
 
 module.exports = {
